@@ -1,0 +1,42 @@
+<h1>Awesome Topics to Vote On!</h1>
+<h2>These are the topics we want to share</h2>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+<% @names.each do |name| %>
+  <tr>
+    <td><%= name.upcase %></td>
+    <td><%= name.downcase %></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+<% end %>
+
+
+
+<% @topics.each do |topic| %>
+  <tr>
+    <td><%= topic.title.upcase %></td>
+    <td><%= topic.description %></td>
+    <% if topic.description.start_with?('T') %>
+      <td><%= topic.description %> -- starts with T!</td>
+    <% else %>
+    <td><%=topic.description %> -- doesn't start with T</td>
+    <% end %>
+    <td><%= link_to 'Show', topic %></td>
+    <td><%= link_to 'Edit', edit_topic_path(topic) %></td>
+    <td><%= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Topic', new_topic_path %>
